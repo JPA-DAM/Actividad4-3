@@ -97,7 +97,7 @@ public VentanaDepart(JFrame f )
 public void actionPerformed(ActionEvent e) 
 {   String departamentoExiste = "DEPARTAMENTO EXISTE.";
 	if (e.getSource() == balta) { //SE PULSA EL BOTON alta   	
-		altadepart(departamentoExiste); 
+		altadepart(departamentoExiste, "PRUEBA"); 
 	    }
 		   
 	if (e.getSource() == consu) { //SE PULSA EL BOTON  consultar  	
@@ -138,7 +138,7 @@ public void modifdepart(String departamentoExiste) {
 	try {
 		  dep=Integer.parseInt(num.getText());
 		  if (dep >0)
-		      if (consultar(dep))
+		      if (consultar(dep, "PRUEBA"))
 		       { mensaje.setText(departamentoExiste);  
 		         confirm=JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...", "AVISO MODIFICACI�N.", 
 		        		     JOptionPane.OK_CANCEL_OPTION);	  
@@ -168,7 +168,7 @@ public void borradepart(String departamentoExiste) {
 	try {
 		  dep=Integer.parseInt(num.getText());
 		  if (dep >0)
-		      if (consultar(dep))
+		      if (consultar(dep, "PRUEBA"))
 		       { mensaje.setText(departamentoExiste);   
 		         visualiza(dep);
 		         confirm=JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...", "AVISO BORRADO.", 
@@ -199,7 +199,7 @@ public void consuldepart(String departamentoExiste) {
 	try {
 		  dep=Integer.parseInt(num.getText());
 		  if (dep >0)
-		      if (consultar(dep))
+		      if (consultar(dep, "PRUEBA"))
 		       { mensaje.setText(departamentoExiste);   
 		         visualiza(dep);}
 		      else
@@ -214,13 +214,13 @@ public void consuldepart(String departamentoExiste) {
 	      {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");}
 }
 
-public void altadepart(String departamentoExiste) {
+public int altadepart(String departamentoExiste, String P) {
 	int dep;
 	mensaje.setText(" has pulsado el boton alta");   
 	try {
 		  dep=Integer.parseInt(num.getText());
 		  if (dep >0)
-		      if (consultar(dep))
+		      if (consultar(dep, "PRUEBA"))
 				 mensaje.setText(departamentoExiste);   
 		      else
 				{ mensaje.setText("NUEVO DEPARTAMENTO.");	
@@ -237,6 +237,7 @@ public void altadepart(String departamentoExiste) {
 			
 			
 			 }
+	return 0;
 }
 
 public  void verporconsola() throws IOException {     
@@ -274,7 +275,7 @@ public  void verporconsola() throws IOException {
 		System.out.println(" ---------FICHERO VACI�IOOOO --------------------");
 }// fin verporconsola
 
-boolean consultar(int dep) throws IOException 
+int consultar(int dep, String p2) throws IOException 
 {	 
 	long pos; int depa;
 	File fichero = new File("AleatorioDep.dat");
@@ -292,6 +293,7 @@ boolean consultar(int dep) throws IOException
 	    System.out.println(" ERRORRR al leerrrrr..");
 	    return false;
 	  } 
+	return 0;
 } // fin consultar
 void visualiza(int dep) 
 {	    String nom="",loca=""; 
@@ -324,7 +326,7 @@ void visualiza(int dep)
 			e1.printStackTrace();
 		}	
 } // fin visualiza
-void borrar(int dep) 
+int borrar(int dep) 
 {	    // con borrar ponemos a 0 el dep que se quiere borrar
 	    // y a blancos el nombre y la localidad
 	    String nom="",loca="";  StringBuffer buffer = null;
@@ -351,8 +353,9 @@ void borrar(int dep)
 			  System.out.println("ERRROR AL BORRARRR AleatorioDep.dat");    
 			e1.printStackTrace();
 		}	
+		return 0;
 } // fin borrar
-void modificar(int dep) 
+int modificar(int dep) 
 {	    // con modificar asignamos los datos tecleados
 	    String nom="",loca="";  StringBuffer buffer = null;
 		long pos; 
@@ -378,6 +381,7 @@ void modificar(int dep)
 			  System.out.println("ERRROR AL MODIFICARRR AleatorioDep.dat");    
 			e1.printStackTrace();
 		}	
+		return 0;
 } // fin modificar
 void grabar(int dep, String nom, String loc) 
 {	 
