@@ -1,4 +1,4 @@
-
+package FicheroAleatorioVentana;
 public interface InterfaceVentanaDepart {
 
 	int modifdepart(String departamentoExiste, String p6);

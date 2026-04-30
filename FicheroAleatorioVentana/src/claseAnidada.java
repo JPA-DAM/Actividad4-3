@@ -1,5 +1,9 @@
-
+package FicheroAleatorioVentana;
 public class claseAnidada {
+	public claseAnidada(InterfaceVentanaDepart v) {
+		this.claseAnidada = new FicheroAleatorioVentana();
+		claseAnidada ej = new claseAnidada((InterfaceVentanaDepart) this);    }
+	
     /**
 	 * 
 	 */

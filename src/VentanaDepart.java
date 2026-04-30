@@ -15,8 +15,8 @@ public class VentanaDepart extends JFrame implements ActionListener  {
 	
 private static final long serialVersionUID = 1L;
 JTextField num=new JTextField(10);
-JTextField nombre=new JTextField(25);
-JTextField loc=new JTextField(25);
+public JTextField nombre=new JTextField(25);
+public JTextField loc=new JTextField(25);
 
 
 JLabel mensaje=new JLabel(" ----------------------------- ");
@@ -38,7 +38,8 @@ Color c; //para poner colores
 
 public VentanaDepart(JFrame f )
 { 	
-    setTitle("GESTI�N DE DEPARTAMENTOS.");
+    super();
+	setTitle("GESTI�N DE DEPARTAMENTOS.");
     
     JPanel p0 = new JPanel();
 	c = Color.CYAN;
