@@ -94,7 +94,17 @@ public VentanaDepart(JFrame f )
 	ver.addActionListener(this);
 }
 
-public void actionPerformed(ActionEvent e) 
+public void actionPerformed(ActionEvent e) {
+    if (e.getSource() == balta) {
+        altadepart("PRUEBA");
+    } else if (e.getSource() == consu) {
+        consuldepart("PRUEBA");
+    } else if (e.getSource() == borra) {
+        borradepart("PRUEBA");
+    } else if (e.getSource() == modif) {
+        modifdepart("PRUEBA");
+    }
+    
 {   int dep, confirm;
 	String existedepart = "DEPARTAMENTO EXISTE.";
 	if (e.getSource() == balta) { //SE PULSA EL BOTON alta   	

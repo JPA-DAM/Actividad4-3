@@ -21,5 +21,22 @@ public class FicheroAleatorioVentana {
 	   
 	}//fin main
 
+	public class claseAnidada {
+		void entrada() {
+			System.out.println("Metodo entrada.");
+		}
+		
+		String salida (int d) {
+			System.out.println("Salida.");
+			return "Salida el " + d;
+		}
+		
+		public void verporconsola() {
+			claseAnidada ej = new claseAnidada();
+			ej.entrada();
+			System.out.println("Llamo a Salida: " + ej.salida(10) );
+		}
+		
+	} // fin clase anidada
 	
 }//fin class
