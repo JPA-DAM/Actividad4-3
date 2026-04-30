@@ -11,7 +11,7 @@ import java.io.RandomAccessFile;
 
 import javax.swing.*;
 
-public class VentanaDepart extends JFrame implements ActionListener  {
+public class VentanaDepart extends JFrame implements ActionListener, InterfaceVentanaDepart  {
 	
 private static final String NOEXISTEDEPART = "DEPARTAMENTO NO EXISTE.";
 private static final long serialVersionUID = 1L;
@@ -101,15 +101,15 @@ public void actionPerformed(ActionEvent e)
 	    }
 		   
 	if (e.getSource() == consu) { //SE PULSA EL BOTON  consultar  	
-		consuldepart(departamentoExiste); 
+		consuldepart(departamentoExiste, "PRUEBA"); 
 	      
 	    }
 		  
 	if (e.getSource() == borra) { //SE PULSA EL BOTON  borrar  	
-		borradepart(departamentoExiste); 
+		borradepart(departamentoExiste, "PRUEBA"); 
 	    }
 	if (e.getSource() == modif) { //SE PULSA EL BOTON  modificar  	
-		modifdepart(departamentoExiste); 
+		modifdepart(departamentoExiste, "PRUEBA"); 
 	    }
 	if (e.getSource() == fin) { //SE PULSA EL BOTON salir 	
 		 System.exit(0);	
@@ -131,7 +131,8 @@ public void actionPerformed(ActionEvent e)
 	}
 }
 
-public void modifdepart(String departamentoExiste) {
+@Override
+public int modifdepart(String departamentoExiste, String p6) {
 	int dep;
 	int confirm;
 	mensaje.setText(" has pulsado el boton Modificar.");   
@@ -159,9 +160,11 @@ public void modifdepart(String departamentoExiste) {
 	       {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
 	   catch (IOException ex2) 
 		   {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (MODIFICAR)");}
+		return 0;
 }
 
-public void borradepart(String departamentoExiste) {
+@Override
+public int borradepart(String departamentoExiste, String p8) {
 	int dep;
 	int confirm;
 	mensaje.setText(" has pulsado el boton Borrar");   
@@ -191,9 +194,11 @@ public void borradepart(String departamentoExiste) {
 	       {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
 	   catch (IOException ex2) 
 		   {mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (BORRAR)");}
+		return 0;
 }
 
-public void consuldepart(String departamentoExiste) {
+@Override
+public int consuldepart(String departamentoExiste, String p9) {
 	int dep;
 	mensaje.setText(" has pulsado el boton alta");   
 	try {
@@ -212,8 +217,10 @@ public void consuldepart(String departamentoExiste) {
 	       {mensaje.setText("DEPARTAMENTO ERR�NEO");}
 	     catch (IOException ex2) 
 	      {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");}
+	return 0;
 }
 
+@Override
 public int altadepart(String departamentoExiste, String P) {
 	int dep;
 	mensaje.setText(" has pulsado el boton alta");   
@@ -278,7 +285,7 @@ public  void verporconsola() throws IOException {
 		System.out.println(" ---------FICHERO VACI�IOOOO --------------------");
 }// fin verporconsola
 
-int consultar(int dep, String p2) throws IOException 
+boolean consultar(int dep, String p2) throws IOException 
 {	 
 	long pos; int depa;
 	File fichero = new File("AleatorioDep.dat");
@@ -296,7 +303,6 @@ int consultar(int dep, String p2) throws IOException
 	    System.out.println(" ERRORRR al leerrrrr..");
 	    return false;
 	  } 
-	return 0;
 } // fin consultar
 void visualiza(int dep) 
 {	    String nom="",loca=""; 
@@ -329,7 +335,7 @@ void visualiza(int dep)
 			e1.printStackTrace();
 		}	
 } // fin visualiza
-int borrar(int dep) 
+void borrar(int dep) 
 {	    // con borrar ponemos a 0 el dep que se quiere borrar
 	    // y a blancos el nombre y la localidad
 	    String nom="",loca="";  StringBuffer buffer = null;
@@ -356,9 +362,8 @@ int borrar(int dep)
 			  System.out.println("ERRROR AL BORRARRR AleatorioDep.dat");    
 			e1.printStackTrace();
 		}	
-		return 0;
 } // fin borrar
-int modificar(int dep) 
+void modificar(int dep) 
 {	    // con modificar asignamos los datos tecleados
 	    String nom="",loca="";  StringBuffer buffer = null;
 		long pos; 
@@ -384,7 +389,6 @@ int modificar(int dep)
 			  System.out.println("ERRROR AL MODIFICARRR AleatorioDep.dat");    
 			e1.printStackTrace();
 		}	
-		return 0;
 } // fin modificar
 void grabar(int dep, String nom, String loc) 
 {	 
