@@ -240,7 +240,10 @@ public int altadepart(String departamentoExiste, String P) {
 	return 0;
 }
 
-public  void verporconsola() throws IOException {     
+public  void verporconsola() throws IOException {    
+  claseAnidada ej = new claseAnidada();
+  ej.entrada();
+	System.out.println("Llamo a Salida: " + ej.salida(10));
   String  nom="",loc=""; int dep=0; long pos;
   File fichero = new File("AleatorioDep.dat");
   RandomAccessFile file = new RandomAccessFile(fichero, "r");
