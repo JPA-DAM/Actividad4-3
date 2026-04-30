@@ -94,128 +94,128 @@ public VentanaDepart(JFrame f )
 	ver.addActionListener(this);
 }
 
-public void actionPerformed(ActionEvent e) 
+public static void actionPerformed(VentanaDepart ventanaDepart, ActionEvent e) 
 {   int dep, confirm;
 	String existedepart = "DEPARTAMENTO EXISTE.";
-	if (e.getSource() == balta) { //SE PULSA EL BOTON alta   	
-		mensaje.setText(" has pulsado el boton alta");   
+	if (e.getSource() == ventanaDepart.balta) { //SE PULSA EL BOTON alta   	
+		ventanaDepart.mensaje.setText(" has pulsado el boton alta");   
 		try {
-	    	  dep=Integer.parseInt(num.getText());
+	    	  dep=Integer.parseInt(ventanaDepart.num.getText());
 	    	  if (dep >0)
-	    	      if (consultar(dep))
-					 mensaje.setText(existedepart);   
+	    	      if (ventanaDepart.consultar(dep))
+					 ventanaDepart.mensaje.setText(existedepart);   
 			      else
-					{ mensaje.setText("NUEVO DEPARTAMENTO.");	
-	    	          grabar(dep, nombre.getText(), loc.getText());
-	    	          mensaje.setText("NUEVO DEPARTAMENTO GRABADO.");	
+					{ ventanaDepart.mensaje.setText("NUEVO DEPARTAMENTO.");	
+	    	          ventanaDepart.grabar(dep, ventanaDepart.nombre.getText(), ventanaDepart.loc.getText());
+	    	          ventanaDepart.mensaje.setText("NUEVO DEPARTAMENTO GRABADO.");	
 	    	         }
-	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
+	    	  else ventanaDepart.mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
 	    	  
 	       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
 	         {String depar_error = "DEPARTAMENTO ERR�NEO.";
-			 mensaje.setText(depar_error);} 
+			 ventanaDepart.mensaje.setText(depar_error);} 
 	       catch (IOException ex2) {
-	    	   mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");
+	    	   ventanaDepart.mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");
 	    	   // lo creo
 	    		
 	    		
 	    		 } 
 	    }
 		   
-	if (e.getSource() == consu) { //SE PULSA EL BOTON  consultar  	
-		mensaje.setText(" has pulsado el boton alta");   
+	if (e.getSource() == ventanaDepart.consu) { //SE PULSA EL BOTON  consultar  	
+		ventanaDepart.mensaje.setText(" has pulsado el boton alta");   
 		try {
-	    	  dep=Integer.parseInt(num.getText());
+	    	  dep=Integer.parseInt(ventanaDepart.num.getText());
 	    	  if (dep >0)
-	    	      if (consultar(dep))
-	    	       { mensaje.setText(existedepart);   
-	    	         visualiza(dep);}
+	    	      if (ventanaDepart.consultar(dep))
+	    	       { ventanaDepart.mensaje.setText(existedepart);   
+	    	         ventanaDepart.visualiza(dep);}
 			      else
-					{ mensaje.setText(NOEXISTEDEPART);	
-					  nombre.setText(" "); loc.setText(" ");
+					{ ventanaDepart.mensaje.setText(NOEXISTEDEPART);	
+					  ventanaDepart.nombre.setText(" "); ventanaDepart.loc.setText(" ");
 	    	         }
-	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
+	    	  else ventanaDepart.mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
 	    	  
 	       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
-	           {mensaje.setText("DEPARTAMENTO ERR�NEO");}
+	           {ventanaDepart.mensaje.setText("DEPARTAMENTO ERR�NEO");}
 	         catch (IOException ex2) 
-    	      {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");} 
+    	      {ventanaDepart.mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");} 
 	      
 	    }
 		  
-	if (e.getSource() == borra) { //SE PULSA EL BOTON  borrar  	
-		mensaje.setText(" has pulsado el boton Borrar");   
+	if (e.getSource() == ventanaDepart.borra) { //SE PULSA EL BOTON  borrar  	
+		ventanaDepart.mensaje.setText(" has pulsado el boton Borrar");   
 		try {
-	    	  dep=Integer.parseInt(num.getText());
+	    	  dep=Integer.parseInt(ventanaDepart.num.getText());
 	    	  if (dep >0)
-	    	      if (consultar(dep))
-	    	       { mensaje.setText(existedepart);   
-	    	         visualiza(dep);
-	    	         confirm=JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...", "AVISO BORRADO.", 
+	    	      if (ventanaDepart.consultar(dep))
+	    	       { ventanaDepart.mensaje.setText(existedepart);   
+	    	         ventanaDepart.visualiza(dep);
+	    	         confirm=JOptionPane.showConfirmDialog(ventanaDepart, "ESTAS SEGURO DE BORRAR...", "AVISO BORRADO.", 
 	    	        		     JOptionPane.OK_CANCEL_OPTION);	  
 	    	           // si devuelve 0 es OK
 	    	           //mensaje.setText(" has pulsado el boton Borrar "+ confirm);   
 	    	         if (confirm==0)  
-	    	          { borrar(dep);
-	    	            mensaje.setText(" REGISTRO BORRADOO: " + dep);	
-					    nombre.setText(" "); loc.setText(" ");
+	    	          { ventanaDepart.borrar(dep);
+	    	            ventanaDepart.mensaje.setText(" REGISTRO BORRADOO: " + dep);	
+					    ventanaDepart.nombre.setText(" "); ventanaDepart.loc.setText(" ");
 	    	           }
 	    	       } 
 			      else
-					{ mensaje.setText(NOEXISTEDEPART);	
-					  nombre.setText(" "); loc.setText(" ");
+					{ ventanaDepart.mensaje.setText(NOEXISTEDEPART);	
+					  ventanaDepart.nombre.setText(" "); ventanaDepart.loc.setText(" ");
 	    	         }
-	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
+	    	  else ventanaDepart.mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
 	    	  
 	       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
-	           {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
+	           {ventanaDepart.mensaje.setText("DEPARTAMENTO ERR�NEO");} 
 	       catch (IOException ex2) 
-	    	   {mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (BORRAR)");} 
+	    	   {ventanaDepart.mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (BORRAR)");} 
 	    }
-	if (e.getSource() == modif) { //SE PULSA EL BOTON  modificar  	
-		mensaje.setText(" has pulsado el boton Modificar.");   
+	if (e.getSource() == ventanaDepart.modif) { //SE PULSA EL BOTON  modificar  	
+		ventanaDepart.mensaje.setText(" has pulsado el boton Modificar.");   
 		try {
-	    	  dep=Integer.parseInt(num.getText());
+	    	  dep=Integer.parseInt(ventanaDepart.num.getText());
 	    	  if (dep >0)
-	    	      if (consultar(dep))
-	    	       { mensaje.setText(existedepart);  
-	    	         confirm=JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...", "AVISO MODIFICACI�N.", 
+	    	      if (ventanaDepart.consultar(dep))
+	    	       { ventanaDepart.mensaje.setText(existedepart);  
+	    	         confirm=JOptionPane.showConfirmDialog(ventanaDepart, "ESTAS SEGURO DE MODIFICAR...", "AVISO MODIFICACI�N.", 
 	    	        		     JOptionPane.OK_CANCEL_OPTION);	  
 	    	           // si devuelve 0 es OK
 	    	           //mensaje.setText(" has pulsado el boton Borrar "+ confirm);   
 	    	        if (confirm==0)  
-	    	          { modificar(dep);
-	    	            mensaje.setText(" REGISTRO MODIFICADO: " + dep);	
+	    	          { ventanaDepart.modificar(dep);
+	    	            ventanaDepart.mensaje.setText(" REGISTRO MODIFICADO: " + dep);	
 		 	           }
 	    	       } 
 			      else
-					{ mensaje.setText(NOEXISTEDEPART);	
-					  nombre.setText(" "); loc.setText(" ");
+					{ ventanaDepart.mensaje.setText(NOEXISTEDEPART);	
+					  ventanaDepart.nombre.setText(" "); ventanaDepart.loc.setText(" ");
 	    	         }
-	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
+	    	  else ventanaDepart.mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
 	    	  
 	       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
-	           {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
+	           {ventanaDepart.mensaje.setText("DEPARTAMENTO ERR�NEO");} 
 	       catch (IOException ex2) 
-	    	   {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (MODIFICAR)");} 
+	    	   {ventanaDepart.mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (MODIFICAR)");} 
 	    }
-	if (e.getSource() == fin) { //SE PULSA EL BOTON salir 	
+	if (e.getSource() == ventanaDepart.fin) { //SE PULSA EL BOTON salir 	
 		 System.exit(0);	
 		 //dispose();   	
 	}
-	if (e.getSource() == ver) { //SE PULSA EL BOTON  ver por consola  	
+	if (e.getSource() == ventanaDepart.ver) { //SE PULSA EL BOTON  ver por consola  	
 		try {
-			mensaje.setText("Visualizando el fichero por la consolaa.....");    
-			verporconsola();
+			ventanaDepart.mensaje.setText("Visualizando el fichero por la consolaa.....");    
+			ventanaDepart.verporconsola();
 		} catch (IOException e1) {
 			System.out.println("ERRROR AL LEEERRRRRR AleatorioDep.dat");    
 			//e1.printStackTrace();
 		}	
 	}
-	if (e.getSource() == breset) { //SE PULSA EL BOTON  limpiar  	
-		mensaje.setText(" has pulsado el boton limpiar..");    
-        num.setText(" ");nombre.setText(" ");
-        loc.setText(" ");
+	if (e.getSource() == ventanaDepart.breset) { //SE PULSA EL BOTON  limpiar  	
+		ventanaDepart.mensaje.setText(" has pulsado el boton limpiar..");    
+        ventanaDepart.num.setText(" ");ventanaDepart.nombre.setText(" ");
+        ventanaDepart.loc.setText(" ");
 	}
 }
 
